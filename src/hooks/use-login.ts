@@ -7,6 +7,13 @@ import { login, fetchAuthUser, type LoginPayload } from "@/lib/auth-api";
 import { useAuthStore } from "@/stores/auth-store";
 import { useUiStore } from "@/stores/ui-store";
 
+function safeRedirect(target: string | null): string {
+  if (!target || !target.startsWith("/") || target.startsWith("//") || target.startsWith("/\\")) {
+    return "/search";
+  }
+  return target;
+}
+
 export function useLogin() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -25,7 +32,7 @@ export function useLogin() {
       }
       setAuth(token, user);
       pushToast("success", `Welcome back, ${user.firstName}!`);
-      router.replace(from ?? "/search");
+      router.replace(safeRedirect(from));
     },
     onError: (err) => {
       const message =
