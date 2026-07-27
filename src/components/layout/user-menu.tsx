@@ -74,7 +74,7 @@ export function UserMenu({ tone }: UserMenuProps) {
               logout();
               setOpen(false);
             }}
-            className="text-sm px-4 py-2 hover:bg-foreground/5 w-full text-left"
+            className="text-sm px-4 py-2 hover:bg-foreground/5 w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-sm"
           >
             Log out
           </button>

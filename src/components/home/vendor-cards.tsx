@@ -13,14 +13,14 @@ const VENDORS = [
 
 export function VendorCards() {
   return (
-    <section className="bg-surface-alt py-16 md:py-24">
+    <section className="bg-surface-alt py-12 md:py-24">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <SectionHeading
           title="Complete Your Event with our Trusted Vendors"
           subtitle="Venues are just the beginning. Discover caterers, decorators, photographers, entertainment, and more all in one place, ready to bring your event project to life."
         />
 
-        <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {VENDORS.map(({ label, src }) => (
             <div
               key={label}

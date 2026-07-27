@@ -35,7 +35,14 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
       <div>
+        <label
+          htmlFor="contact-email"
+          className="block text-sm font-medium text-white/80 mb-1"
+        >
+          Email address
+        </label>
         <Input
+          id="contact-email"
           {...register("email")}
           type="email"
           placeholder="Email Address"
@@ -51,7 +58,14 @@ export function ContactForm() {
         )}
       </div>
       <div>
+        <label
+          htmlFor="contact-message"
+          className="block text-sm font-medium text-white/80 mb-1"
+        >
+          Message
+        </label>
         <Textarea
+          id="contact-message"
           {...register("message")}
           placeholder="Message"
           invalid={!!errors.message}

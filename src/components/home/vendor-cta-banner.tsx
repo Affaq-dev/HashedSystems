@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function VendorCtaBanner() {
   return (
-    <section className="py-16 md:py-20">
+    <section className="py-12 md:py-20">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="rounded-card overflow-hidden bg-gradient-to-r from-primary to-accent p-8 md:p-14 grid md:grid-cols-2 items-center gap-8">
           <div>

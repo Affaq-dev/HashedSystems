@@ -102,7 +102,7 @@ export function Navbar({ variant = "solid" }: NavbarProps) {
             </Link>
           )}
 
-          <div className="hidden md:flex items-center gap-2">
+          <nav aria-label="Main" className="hidden md:flex items-center gap-2">
             {mounted && token && user ? (
               <UserMenu tone={effectiveSolid ? "dark" : "light"} />
             ) : (
@@ -168,7 +168,7 @@ export function Navbar({ variant = "solid" }: NavbarProps) {
                 </Link>
               </>
             )}
-          </div>
+          </nav>
 
           <div className="flex md:hidden items-center gap-2">
             <button

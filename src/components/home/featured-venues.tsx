@@ -32,13 +32,13 @@ export function FeaturedVenues() {
   const displayed = filterVenues(activeTab);
 
   return (
-    <section className="relative py-16 md:py-24 overflow-hidden">
+    <section className="relative py-12 md:py-24 overflow-hidden">
       <Image
         src="/images/featured-bg.png"
         alt=""
         fill
         className="object-cover"
-        priority
+        sizes="100vw"
         aria-hidden="true"
       />
       <div className="absolute inset-0 bg-black/55" />

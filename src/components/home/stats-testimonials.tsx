@@ -47,7 +47,7 @@ function StarRow() {
 
 export function StatsTestimonials() {
   return (
-    <section className="bg-surface-alt py-16 md:py-24">
+    <section className="bg-surface-alt py-12 md:py-24">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <SectionHeading
           title="Trusted by Event Creators Who Demand Excellence"
