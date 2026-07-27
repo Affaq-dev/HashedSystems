@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import dynamic from "next/dynamic";
 import { cn } from "@/lib/cn";
 import { useSearchParamsState } from "@/hooks/use-search-params-state";
 import { useVenues } from "@/hooks/use-venues";
@@ -10,13 +11,22 @@ import { EmptyState } from "./empty-state";
 import { ActiveFilters } from "./active-filters";
 import { Button } from "@/components/ui/button";
 
+const VenueMap = dynamic(() => import("./venue-map"), {
+  ssr: false,
+  loading: () => <div className="h-full w-full rounded-card bg-surface-alt animate-pulse" />,
+});
+
 export function ResultsGrid() {
   const { params } = useSearchParamsState();
   const query = useVenues(params);
-  const [_mapOpen, setMapOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [mobileMapOpen, setMobileMapOpen] = useState(false);
 
   const total = query.data?.pages[0]?.total;
-  const allItems = query.data?.pages.flatMap((p) => p.items) ?? [];
+  const allItems = useMemo(
+    () => query.data?.pages.flatMap((p) => p.items) ?? [],
+    [query.data]
+  );
 
   return (
     <>
@@ -53,7 +63,11 @@ export function ResultsGrid() {
               >
                 <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
                   {allItems.map((venue) => (
-                    <VenueCard key={venue.id} venue={venue} />
+                    <VenueCard
+                      key={venue.id}
+                      venue={venue}
+                      highlighted={venue.id === selectedId}
+                    />
                   ))}
                 </div>
 
@@ -73,8 +87,12 @@ export function ResultsGrid() {
           </div>
 
           <aside className="hidden xl:block xl:w-[38%] shrink-0">
-            <div className="rounded-card bg-surface-alt border border-border h-[70vh] sticky top-[104px] flex items-center justify-center text-muted text-sm">
-              Map view coming soon
+            <div className="rounded-card border border-border h-[70vh] sticky top-[104px] overflow-hidden">
+              <VenueMap
+                venues={allItems}
+                selectedId={selectedId}
+                onSelect={setSelectedId}
+              />
             </div>
           </aside>
         </div>
@@ -83,7 +101,7 @@ export function ResultsGrid() {
       <button
         type="button"
         aria-label="Show map"
-        onClick={() => setMapOpen(true)}
+        onClick={() => setMobileMapOpen(true)}
         className="fixed bottom-6 left-1/2 -translate-x-1/2 xl:hidden inline-flex items-center gap-2 bg-ink text-white rounded-full h-11 px-6 shadow-float text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 transition-colors hover:bg-ink/90 motion-reduce:transition-none"
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -97,6 +115,32 @@ export function ResultsGrid() {
         </svg>
         Show Map
       </button>
+
+      {mobileMapOpen && (
+        <div className="fixed inset-0 z-50 bg-surface">
+          <VenueMap
+            venues={allItems}
+            selectedId={selectedId}
+            onSelect={setSelectedId}
+          />
+          <button
+            type="button"
+            aria-label="Show list"
+            onClick={() => setMobileMapOpen(false)}
+            className="fixed bottom-6 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 bg-ink text-white rounded-full h-11 px-6 shadow-float text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 transition-colors hover:bg-ink/90 motion-reduce:transition-none"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path
+                d="M2 4h12M2 8h12M2 12h12"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
+            Show List
+          </button>
+        </div>
+      )}
     </>
   );
 }
