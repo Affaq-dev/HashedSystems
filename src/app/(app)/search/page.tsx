@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { SearchToolbar } from "@/components/search/search-toolbar";
 import { CategoryTabs } from "@/components/search/category-tabs";
 import { ResultsGrid } from "@/components/search/results-grid";
+import { FilterModal } from "@/components/search/filter-modal";
 
 export const metadata: Metadata = { title: "Search venues — Venuze" };
 
@@ -12,6 +13,7 @@ export default function SearchPage() {
       <SearchToolbar />
       <CategoryTabs />
       <ResultsGrid />
+      <FilterModal />
     </Suspense>
   );
 }
