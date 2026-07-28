@@ -45,7 +45,7 @@ const COLLAGE = [
 export function HowItWorks() {
   return (
     <section className="bg-white pt-12 lg:pt-24 pb-12 md:pb-24">
-      <div className="max-w-7xl mx-auto px-5 md:px-6">
+      <div className="max-w-[1440px] mx-auto px-5 md:px-6 lg:px-[80px]">
         <SectionHeading
           title="Your Path to the Perfect Venue"
           subtitle="Planning an event, production, or gathering shouldn’t feel complicated. Our streamlined process connects you with the right venues and trusted professionals, taking the stress out of logistics so you can focus on what matters most  making it a success."

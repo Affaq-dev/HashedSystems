@@ -56,7 +56,7 @@ export function Navbar({ variant = "solid" }: NavbarProps) {
           effectiveSolid ? "bg-surface border-b border-border" : "bg-transparent"
         )}
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-6 h-[72px] md:h-[88px] flex items-center justify-between gap-4">
+        <div className="max-w-[1440px] mx-auto px-4 md:px-[30px] h-[72px] md:h-[88px] flex items-center justify-between gap-4">
           <Logo withWordmark wordmarkTone={effectiveSolid ? "brand" : "light"} />
 
           {effectiveSolid && isAuthenticated && (

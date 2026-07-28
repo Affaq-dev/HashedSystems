@@ -72,7 +72,7 @@ export function ActiveFilters({ total, mapOpen, onToggleMap }: ActiveFiltersProp
 
 
   return (
-    <div className="max-w-[1600px] mx-auto px-4 md:px-6 py-[10px] flex flex-wrap items-center gap-[5px]">
+    <div className="max-w-[1440px] mx-auto px-4 md:px-[30px] py-[10px] flex flex-wrap items-center gap-[5px]">
       <span className="text-[14px] text-[#575757] font-normal shrink-0 mr-1">
         {total === undefined ? (
           <Skeleton className="h-5 w-40 inline-block" />

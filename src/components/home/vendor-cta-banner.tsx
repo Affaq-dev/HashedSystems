@@ -6,7 +6,7 @@ export function VendorCtaBanner() {
       <div className="relative">
         <div aria-hidden className="absolute inset-x-0 top-0 h-[53%] bg-surface-alt" />
 
-        <div className="relative max-w-7xl mx-auto px-4 md:px-6">
+        <div className="relative max-w-[1440px] mx-auto px-4 md:px-6 lg:px-[80px]">
           <div className="rounded-[20px] overflow-hidden bg-[linear-gradient(to_right,#ff786a,#ff4f37_50%,#ffc331)] grid md:grid-cols-2 items-center gap-5 md:gap-8 md:p-14">
             <div className="flex flex-col items-center text-center px-7 pt-9 md:p-0 md:items-start md:text-left">
               <h2 className="text-white font-semibold text-balance text-[24px] leading-[30px] md:text-[32px] md:leading-[38px] lg:text-[44px] lg:leading-[50px]">

@@ -35,7 +35,7 @@ const DESTINATIONS = [
 export function Destinations() {
   return (
     <section className="bg-white py-12 md:py-24">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-[80px]">
         <SectionHeading
           title="Discover Exceptional Destinations Across the Region"
           subtitle="From cosmopolitan cityscapes to cultural treasures, explore where celebrations come alive with local flavor."

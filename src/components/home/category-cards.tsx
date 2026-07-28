@@ -26,7 +26,7 @@ export function CategoryCards() {
 
   return (
     <section className="bg-white py-12 md:py-24">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-[80px]">
         <SectionHeading
           title="Find The Best Venue For Any Occasion"
           subtitle="Explore venues by category, from timeless ballrooms and rooftops with a view to modern studios and outdoor gardens, discover spaces designed to inspire unforgettable experiences."

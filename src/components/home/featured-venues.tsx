@@ -45,7 +45,7 @@ export function FeaturedVenues() {
       />
       <div className="absolute inset-0 bg-black/55" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 md:px-6 lg:px-[80px]">
         <h2 className="text-[28px] md:text-[44px] font-semibold text-white text-center text-balance leading-[50px]">
           Featured Venues
         </h2>

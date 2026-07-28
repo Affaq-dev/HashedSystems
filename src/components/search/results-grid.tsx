@@ -50,7 +50,7 @@ export function ResultsGrid() {
         onToggleMap={() => setMobileMapOpen((v) => !v)}
       />
 
-      <div className="max-w-[1600px] mx-auto px-4 md:px-6 pb-10">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-[30px] pb-10">
         <div className="flex gap-6">
           <div className={cn("flex-1 min-w-0", mobileMapOpen && "hidden xl:block")}>
             {query.isPending ? (

@@ -31,7 +31,7 @@ export function SearchToolbar() {
 
   return (
     <div className="border-b border-[#d0d0d0] bg-white">
-      <div className="max-w-[1600px] mx-auto px-4 md:px-6 h-[50px] flex items-center gap-3">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-[30px] h-[50px] flex items-center gap-3">
         <svg
           width="24"
           height="24"

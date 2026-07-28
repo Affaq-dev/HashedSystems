@@ -154,12 +154,12 @@ export function CategoryTabs() {
 
   return (
     <div className="border-b border-[#d0d0d0] bg-white h-[80px]">
-      <div className="relative flex items-center h-full">
+      <div className="relative flex items-center h-full max-w-[1440px] mx-auto px-4 md:px-[30px]">
         <button
           type="button"
           onClick={scrollLeft}
           aria-label="Scroll categories left"
-          className="hidden md:flex shrink-0 h-full w-10 items-center justify-center text-[#828282] hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ml-2"
+          className="hidden md:flex shrink-0 h-full w-10 items-center justify-center text-[#828282] hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 -ml-2"
         >
           <svg width="19" height="19" viewBox="0 0 19 19" fill="none" aria-hidden="true">
             <path d="M12 4L7 9.5l5 5.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -198,7 +198,7 @@ export function CategoryTabs() {
           type="button"
           onClick={scrollRight}
           aria-label="Scroll categories right"
-          className="hidden md:flex shrink-0 h-full w-10 items-center justify-center text-[#828282] hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 mr-2"
+          className="hidden md:flex shrink-0 h-full w-10 items-center justify-center text-[#828282] hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 -mr-2"
         >
           <svg width="19" height="19" viewBox="0 0 19 19" fill="none" aria-hidden="true">
             <path d="M7 4l5 5.5-5 5.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

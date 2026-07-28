@@ -25,7 +25,7 @@ export function VendorCards() {
 
   return (
     <section className="bg-surface-alt pt-12 md:pt-24 pb-10 md:pb-[52px] lg:pb-[66px]">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-[80px]">
         <SectionHeading
           title="Complete Your Event with our Trusted Vendors"
           subtitle="Venues are just the beginning. Discover caterers, decorators, photographers, entertainment, and more all in one place, ready to bring your event project to life."
