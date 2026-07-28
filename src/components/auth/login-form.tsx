@@ -31,10 +31,7 @@ export function LoginForm() {
   const passwordErrorId = "login-password-error";
 
   return (
-    <form
-      onSubmit={handleSubmit((data) => mutation.mutate(data))}
-      noValidate
-    >
+    <form onSubmit={handleSubmit((data) => mutation.mutate(data))} noValidate>
       <div className="flex flex-col gap-5">
         <div>
           <label
@@ -54,7 +51,11 @@ export function LoginForm() {
             {...register("email")}
           />
           {errors.email && (
-            <p id={emailErrorId} className="text-xs text-primary mt-1" role="alert">
+            <p
+              id={emailErrorId}
+              className="text-xs text-primary mt-1"
+              role="alert"
+            >
               {errors.email.message}
             </p>
           )}
@@ -78,7 +79,11 @@ export function LoginForm() {
             {...register("password")}
           />
           {errors.password && (
-            <p id={passwordErrorId} className="text-xs text-primary mt-1" role="alert">
+            <p
+              id={passwordErrorId}
+              className="text-xs text-primary mt-1"
+              role="alert"
+            >
               {errors.password.message}
             </p>
           )}
@@ -94,9 +99,9 @@ export function LoginForm() {
         </Button>
       </div>
 
-      <div className="mt-4 rounded-field bg-surface-alt text-muted text-xs p-3">
+      {/* <div className="mt-4 rounded-field bg-surface-alt text-muted text-xs p-3">
         Demo credentials — eve.holt@reqres.in / cityslicka
-      </div>
+      </div> */}
     </form>
   );
 }
