@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
-import { Button } from "@/components/ui/button";
 import { IconButton } from "@/components/ui/icon-button";
 import { Badge } from "@/components/ui/badge";
 import type { Venue } from "@/types/venue";
@@ -25,12 +24,12 @@ export function VenueCard({ venue, highlighted = false }: VenueCardProps) {
   return (
     <div
       className={cn(
-        "group bg-white rounded-card overflow-hidden shadow-card",
+        "group flex h-full flex-col bg-white rounded-card overflow-hidden shadow-card",
         "hover:shadow-float hover:-translate-y-0.5 transition motion-reduce:transform-none",
         highlighted && "ring-2 ring-sky-500"
       )}
     >
-      <div className="relative aspect-[16/11]">
+      <div className="relative aspect-[6/5] shrink-0">
         <Image
           src={venue.images[imageIndex]}
           alt={venue.title}
@@ -75,7 +74,7 @@ export function VenueCard({ venue, highlighted = false }: VenueCardProps) {
 
         {venue.verified && (
           <div className="absolute top-3 left-3 z-10">
-            <Badge variant="dark">
+            <Badge variant="dark" className="px-[15px] py-[8px] font-semibold text-[12px]">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                 <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -129,8 +128,8 @@ export function VenueCard({ venue, highlighted = false }: VenueCardProps) {
         </div>
       </div>
 
-      <div className="p-4">
-        <p className="font-bold text-foreground leading-snug line-clamp-2">{venue.title}</p>
+      <div className="flex flex-1 flex-col p-4">
+        <p className="font-semibold text-foreground leading-snug line-clamp-2 min-h-[44px]">{venue.title}</p>
 
         <div className="flex items-center gap-1 mt-1">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" className="shrink-0 text-primary">
@@ -140,18 +139,18 @@ export function VenueCard({ venue, highlighted = false }: VenueCardProps) {
             />
             <circle cx="7" cy="5.5" r="1.25" stroke="currentColor" strokeWidth="1.25" />
           </svg>
-          <span className="text-primary text-sm font-medium">{venue.city}, {venue.area}</span>
+          <span className="text-primary text-[14px] font-medium">{venue.city}, {venue.area}</span>
         </div>
 
-        <div className="mt-2 flex flex-wrap gap-1.5">
-          <span className="inline-flex items-center gap-1 rounded-full border border-border px-2.5 py-1 text-xs text-muted">
+        <div className="mt-2 mb-3 flex flex-wrap content-start gap-[5px] min-h-[59px]">
+          <span className="inline-flex items-center gap-[5px] rounded-full border border-[#d9d9d9] bg-[#f9fafb] px-[7px] py-[5px] text-[10px] font-medium text-[#364153]">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
               <circle cx="6" cy="4" r="2" stroke="currentColor" strokeWidth="1.1" />
               <path d="M1.5 11c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" />
             </svg>
             {venue.capacity}+
           </span>
-          <span className="inline-flex items-center gap-1 rounded-full border border-border px-2.5 py-1 text-xs text-muted">
+          <span className="inline-flex items-center gap-[5px] rounded-full border border-[#d9d9d9] bg-[#f9fafb] px-[7px] py-[5px] text-[10px] font-medium text-[#364153]">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
               <rect x="1.5" y="1.5" width="9" height="9" rx="1" stroke="currentColor" strokeWidth="1.1" />
               <path d="M4.5 1.5v9M7.5 1.5v9M1.5 4.5h9M1.5 7.5h9" stroke="currentColor" strokeWidth="1.1" />
@@ -159,7 +158,7 @@ export function VenueCard({ venue, highlighted = false }: VenueCardProps) {
             {venue.sizeSqFt.toLocaleString()} sq ft
           </span>
           {venue.parking && (
-            <span className="inline-flex items-center gap-1 rounded-full border border-border px-2.5 py-1 text-xs text-muted">
+            <span className="inline-flex items-center gap-[5px] rounded-full border border-[#d9d9d9] bg-[#f9fafb] px-[7px] py-[5px] text-[10px] font-medium text-[#364153]">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                 <rect x="1" y="3" width="10" height="6.5" rx="1" stroke="currentColor" strokeWidth="1.1" />
                 <circle cx="3.5" cy="9.5" r="1" stroke="currentColor" strokeWidth="1.1" />
@@ -170,21 +169,24 @@ export function VenueCard({ venue, highlighted = false }: VenueCardProps) {
             </span>
           )}
           {venue.amenities.length > 0 && (
-            <span className="inline-flex items-center rounded-full px-2.5 py-1 text-xs text-muted bg-foreground/5">
+            <span className="inline-flex items-center rounded-full border border-[#d9d9d9] bg-[#f9fafb] px-[7px] py-[5px] text-[10px] font-medium text-[#364153]">
               +{venue.amenities.length} more
             </span>
           )}
         </div>
 
-        <div className="mt-3 border-t border-border pt-3 flex items-center justify-between">
-          <span className="font-bold text-sm">
+        <div className="mt-auto border-t border-border pt-3 flex items-center justify-between">
+          <span className="font-semibold text-[12px]">
             From{" "}
             {venue.currency === "AED" ? "AED " : "$"}
             {venue.pricePerHour}/hour
           </span>
-          <Button variant="outline" size="sm">
+          <button
+            type="button"
+            className="h-[32px] px-[15px] rounded-[10px] bg-white border border-primary text-[11px] font-medium text-primary inline-flex items-center justify-center transition-colors hover:bg-[#fff5f3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+          >
             View details
-          </Button>
+          </button>
         </div>
       </div>
     </div>

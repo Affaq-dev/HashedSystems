@@ -123,11 +123,11 @@ export function FilterModal() {
       open={filterModalOpen}
       onClose={closeFilterModal}
       title="Filters"
-      className="max-w-xl"
+      className="max-w-[654px]"
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <section>
-          <h3 className="text-sm font-bold mb-3">Venue Type</h3>
+          <h3 className="text-base font-semibold mb-3">Venue Type</h3>
           <div className="flex flex-wrap gap-2">
             {VENUE_TYPE_OPTIONS.map((option) => {
               const selected = venueTypes.includes(option);
@@ -156,12 +156,12 @@ export function FilterModal() {
         </section>
 
         <section className="mt-8">
-          <h3 className="text-sm font-bold mb-3">Capacity</h3>
-          <p className="text-sm text-muted mb-4">
+          <h3 className="text-base font-semibold mb-3">Capacity</h3>
+          <p className="text-[13px] text-muted mb-4">
             Showing venues for{" "}
-            <strong className="text-foreground">{capacity[0]}</strong>
+            <span className="text-foreground font-medium">{capacity[0]}</span>
             {" - "}
-            <strong className="text-foreground">{capacity[1]}</strong> guests
+            <span className="text-foreground font-medium">{capacity[1]}</span> guests
           </p>
           <Controller
             control={control}
@@ -180,16 +180,15 @@ export function FilterModal() {
         </section>
 
         <section className="mt-8">
-          <h3 className="text-sm font-bold mb-3">Price per hour (AED)</h3>
-          <p className="text-sm text-muted mb-4">
-            <strong className="text-foreground">
+          <h3 className="text-base font-semibold mb-3">Price per hour (AED)</h3>
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-[13px] text-muted">
               AED {price[0].toLocaleString()}.00
-            </strong>
-            {" — "}
-            <strong className="text-foreground">
+            </span>
+            <span className="text-[13px] text-muted">
               AED {price[1].toLocaleString()}.00
-            </strong>
-          </p>
+            </span>
+          </div>
           <Controller
             control={control}
             name="price"
@@ -207,7 +206,7 @@ export function FilterModal() {
         </section>
 
         <section className="mt-8">
-          <h3 className="text-sm font-bold mb-3">Event / Occasion</h3>
+          <h3 className="text-base font-semibold mb-3">Event / Occasion</h3>
           <div className="flex flex-wrap gap-2">
             {EVENT_TYPE_OPTIONS.map((option) => {
               const selected = eventTypes.includes(option);
@@ -238,9 +237,9 @@ export function FilterModal() {
         <section className="mt-8">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-bold">Verified Only</p>
-              <p className="text-xs text-muted mt-0.5">
-                Only show venues with a verified badge
+              <p className="text-base font-semibold">Verified Only</p>
+              <p className="text-[13px] text-muted mt-1">
+                Show only verified venues
               </p>
             </div>
             <Controller

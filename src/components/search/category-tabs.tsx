@@ -16,7 +16,7 @@ const tabs: Tab[] = [
     label: "All Spaces",
     value: "all",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 22 22" fill="none" aria-hidden="true">
         <rect x="2" y="2" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
         <rect x="13" y="2" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
         <rect x="2" y="13" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
@@ -28,7 +28,7 @@ const tabs: Tab[] = [
     label: "Photo Studio",
     value: "photo-studio",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 22 22" fill="none" aria-hidden="true">
         <rect x="2" y="6" width="18" height="13" rx="2" stroke="currentColor" strokeWidth="1.5" />
         <circle cx="11" cy="12.5" r="3.5" stroke="currentColor" strokeWidth="1.5" />
         <path d="M7 6V4.5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1V6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -40,7 +40,7 @@ const tabs: Tab[] = [
     label: "Film Studio",
     value: "film-studio",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 22 22" fill="none" aria-hidden="true">
         <rect x="2" y="6" width="18" height="13" rx="2" stroke="currentColor" strokeWidth="1.5" />
         <path d="M2 10h18M6 6l2-3M10 6l2-3M14 6l2-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
@@ -50,7 +50,7 @@ const tabs: Tab[] = [
     label: "Warehouse",
     value: "warehouse",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 22 22" fill="none" aria-hidden="true">
         <path d="M2 9L11 3l9 6v10H2V9Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
         <rect x="8" y="13" width="6" height="6" rx="0.5" stroke="currentColor" strokeWidth="1.5" />
       </svg>
@@ -60,7 +60,7 @@ const tabs: Tab[] = [
     label: "Gallery",
     value: "gallery",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 22 22" fill="none" aria-hidden="true">
         <rect x="3" y="3" width="16" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" />
         <path d="M3 15l4-4 4 4 3-4 5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <circle cx="7.5" cy="8.5" r="1.5" stroke="currentColor" strokeWidth="1.25" />
@@ -71,7 +71,7 @@ const tabs: Tab[] = [
     label: "Restaurant",
     value: "restaurant",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 22 22" fill="none" aria-hidden="true">
         <path d="M8 3v5a4 4 0 0 1-4 4M8 3v16M4 3v5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M14 3c0 0 4 3.5 4 8 0 0-1.5.5-4 .5V19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
@@ -81,7 +81,7 @@ const tabs: Tab[] = [
     label: "Apartment",
     value: "apartment",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 22 22" fill="none" aria-hidden="true">
         <rect x="3" y="4" width="16" height="15" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
         <path d="M3 9h16" stroke="currentColor" strokeWidth="1.5" />
         <rect x="7" y="12" width="3" height="3" rx="0.5" stroke="currentColor" strokeWidth="1.25" />
@@ -94,7 +94,7 @@ const tabs: Tab[] = [
     label: "Office Space",
     value: "office-space",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 22 22" fill="none" aria-hidden="true">
         <rect x="3" y="7" width="16" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" />
         <path d="M8 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         <path d="M3 12h16" stroke="currentColor" strokeWidth="1.5" />
@@ -106,7 +106,7 @@ const tabs: Tab[] = [
     label: "Venue",
     value: "venue",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 22 22" fill="none" aria-hidden="true">
         <path d="M11 2l2.09 4.26L18 7.27l-3.5 3.41.83 4.82L11 13.2l-4.33 2.3.83-4.82L4 7.27l4.91-.71L11 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
       </svg>
     ),
@@ -115,7 +115,7 @@ const tabs: Tab[] = [
     label: "Private Party",
     value: "private-party",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 22 22" fill="none" aria-hidden="true">
         <path d="M5 17L11 5l6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M11 5 c2-4 5-3 4 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         <circle cx="16" cy="5.5" r="1" fill="currentColor" />
@@ -127,7 +127,7 @@ const tabs: Tab[] = [
     label: "Meeting",
     value: "meeting",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 22 22" fill="none" aria-hidden="true">
         <circle cx="7" cy="7" r="2.5" stroke="currentColor" strokeWidth="1.5" />
         <circle cx="15" cy="7" r="2.5" stroke="currentColor" strokeWidth="1.5" />
         <path d="M2 18c0-3 2-5 5-5M20 18c0-3-2-5-5-5M11 13c-1.5 0-4 1-4 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -153,22 +153,22 @@ export function CategoryTabs() {
   }
 
   return (
-    <div className="border-b border-border bg-surface">
-      <div className="relative flex items-center">
+    <div className="border-b border-[#d0d0d0] bg-white h-[80px]">
+      <div className="relative flex items-center h-full">
         <button
           type="button"
           onClick={scrollLeft}
           aria-label="Scroll categories left"
-          className="hidden md:flex shrink-0 h-10 w-10 items-center justify-center text-muted hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ml-2"
+          className="hidden md:flex shrink-0 h-full w-10 items-center justify-center text-[#828282] hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ml-2"
         >
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-            <path d="M11 4L6 9l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <svg width="19" height="19" viewBox="0 0 19 19" fill="none" aria-hidden="true">
+            <path d="M12 4L7 9.5l5 5.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
 
         <div
           ref={scrollRef}
-          className="flex overflow-x-auto scrollbar-none px-2 md:px-0 flex-1"
+          className="flex overflow-x-auto scrollbar-none px-2 md:px-0 flex-1 h-full items-center"
           style={{ scrollbarWidth: "none" }}
         >
           {tabs.map((tab) => {
@@ -181,10 +181,10 @@ export function CategoryTabs() {
                 aria-label={`Filter by ${tab.label}`}
                 aria-current={isActive ? "true" : undefined}
                 className={cn(
-                  "flex flex-col items-center gap-1.5 px-3 py-3 text-xs font-medium whitespace-nowrap border-b-2 -mb-px transition-colors shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset",
+                  "flex flex-col items-center gap-[4px] px-[10px] text-[12px] font-normal whitespace-nowrap transition-colors shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset",
                   isActive
-                    ? "border-primary text-primary"
-                    : "border-transparent text-muted hover:text-foreground"
+                    ? "self-stretch justify-center bg-[#f4f4f4] rounded-[8px] text-primary font-medium"
+                    : "py-[14px] text-[#616161] hover:text-foreground"
                 )}
               >
                 {tab.icon}
@@ -198,10 +198,10 @@ export function CategoryTabs() {
           type="button"
           onClick={scrollRight}
           aria-label="Scroll categories right"
-          className="hidden md:flex shrink-0 h-10 w-10 items-center justify-center text-muted hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 mr-2"
+          className="hidden md:flex shrink-0 h-full w-10 items-center justify-center text-[#828282] hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 mr-2"
         >
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-            <path d="M7 4l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <svg width="19" height="19" viewBox="0 0 19 19" fill="none" aria-hidden="true">
+            <path d="M7 4l5 5.5-5 5.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
       </div>

@@ -36,21 +36,16 @@ export function Navbar({ variant = "solid" }: NavbarProps) {
   }, [variant]);
 
   const effectiveSolid = variant === "solid" || scrolled;
+  const isAuthenticated = mounted && Boolean(token) && Boolean(user);
 
   const outlinePillClasses = cn(
-    "rounded-full border h-10 px-4 inline-flex items-center gap-1.5 text-sm font-medium transition-colors",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
-    effectiveSolid
-      ? "border-primary text-primary hover:bg-primary/5"
-      : "border-white/70 text-white hover:bg-white/10"
+    "rounded-[10px] border-[1.5px] border-primary bg-white text-primary h-[40px] px-4 inline-flex items-center gap-[8px] text-[14px] leading-[20px] font-semibold transition-colors hover:bg-primary/5",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
   );
 
   const loginLinkClasses = cn(
-    "h-10 w-10 rounded-full border inline-flex items-center justify-center transition-colors",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
-    effectiveSolid
-      ? "border-primary text-primary hover:bg-primary/5"
-      : "border-white/70 text-white hover:bg-white/10"
+    "h-[40px] w-[44px] rounded-[10px] border-[1.5px] border-primary bg-white text-primary inline-flex items-center justify-center transition-colors hover:bg-primary/5",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
   );
 
   return (
@@ -62,37 +57,39 @@ export function Navbar({ variant = "solid" }: NavbarProps) {
         )}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 h-[72px] md:h-[88px] flex items-center justify-between gap-4">
-          <Logo withWordmark={effectiveSolid} />
+          <Logo withWordmark wordmarkTone={effectiveSolid ? "brand" : "light"} />
 
-          {effectiveSolid && (
+          {effectiveSolid && isAuthenticated && (
             <Link
               href="/search"
-              className="hidden md:flex items-center rounded-full border border-border shadow-card bg-white px-1 gap-0 hover:shadow-float transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+              className="hidden md:flex items-center rounded-[10px] border border-[#d2d2d2] bg-white h-[44px] gap-0 hover:border-primary/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 pl-[5px] pr-[5px]"
             >
-              <span className="text-sm text-muted px-4 py-2">Location</span>
-              <span className="text-sm text-muted px-4 py-2 border-l border-border">
+              <span className="text-[14px] leading-[21px] font-medium text-black px-4">Location</span>
+              <span className="self-stretch w-px bg-[#dfdfdf] my-[10px]" />
+              <span className="text-[14px] leading-[21px] font-medium text-black px-4">
                 Date
               </span>
-              <span className="text-sm text-muted px-4 py-2 border-l border-border">
+              <span className="self-stretch w-px bg-[#dfdfdf] my-[10px]" />
+              <span className="text-[14px] leading-[21px] font-medium text-black px-4">
                 Guests
               </span>
-              <span className="ml-1 flex items-center justify-center h-8 w-8 rounded-full bg-primary text-white shrink-0">
+              <span className="flex items-center justify-center h-[34px] w-[34px] rounded-[10px] bg-primary text-white shrink-0 ml-1">
                 <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 14 14"
+                  width="15"
+                  height="15"
+                  viewBox="0 0 15 15"
                   fill="none"
                   aria-hidden="true"
                 >
                   <circle
-                    cx="6"
-                    cy="6"
-                    r="4.5"
+                    cx="6.5"
+                    cy="6.5"
+                    r="5"
                     stroke="currentColor"
                     strokeWidth="1.5"
                   />
                   <path
-                    d="M9.5 9.5L12 12"
+                    d="M10 10L13 13"
                     stroke="currentColor"
                     strokeWidth="1.5"
                     strokeLinecap="round"
@@ -103,7 +100,7 @@ export function Navbar({ variant = "solid" }: NavbarProps) {
           )}
 
           <nav aria-label="Main" className="hidden md:flex items-center gap-2">
-            {mounted && token && user ? (
+            {isAuthenticated ? (
               <UserMenu tone={effectiveSolid ? "dark" : "light"} />
             ) : (
               <>
@@ -173,11 +170,8 @@ export function Navbar({ variant = "solid" }: NavbarProps) {
           <div className="flex md:hidden items-center gap-2">
             <button
               className={cn(
-                "rounded-full border h-9 px-4 inline-flex items-center text-sm font-medium transition-colors",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
-                effectiveSolid
-                  ? "border-primary text-primary hover:bg-primary/5"
-                  : "border-white/70 text-white hover:bg-white/10"
+                "rounded-[10px] border-[1.5px] border-primary bg-white text-primary h-[40px] px-4 inline-flex items-center text-[14px] font-semibold transition-colors hover:bg-primary/5",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
               )}
             >
               Add your listing

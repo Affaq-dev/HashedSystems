@@ -1,119 +1,110 @@
-import { ContactForm } from "@/components/layout/contact-form";
+import Image from "next/image";
+import { ContactForm } from "./contact-form";
 
-type LinkColumn = {
-  heading: string;
-  links: string[];
-};
-
-const LINK_COLUMNS: LinkColumn[] = [
+const LINK_COLUMNS = [
+  { heading: "Venuze", links: ["About", "News", "Careers", "Investors"], order: "order-1" },
   {
-    heading: "Venuze",
-    links: ["About", "News", "Careers", "Investors"],
+    heading: "Support",
+    links: ["Listings your venue", "Listing your service", "Help center", "FAQ"],
+    order: "order-3 md:order-2",
   },
   {
     heading: "Explore",
     links: ["Venue types", "Venue features", "Service options", "Locations"],
-  },
-  {
-    heading: "Support",
-    links: ["Listings your venue", "Listing your service", "Help center", "FAQ"],
+    order: "order-2 md:order-3",
   },
   {
     heading: "Legal & Privacy",
-    links: [
-      "Terms of service",
-      "Payment & refund policy",
-      "Host agreement",
-      "Vendor agreement",
-    ],
+    links: ["Terms of service", "Payment & refund policy", "Host agreement", "Vendor agreement"],
+    order: "order-4",
   },
-];
+] as const;
+
+function SocialIcon({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <a
+      href="#"
+      aria-label={label}
+      className="text-white hover:text-white/70 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 rounded-sm"
+    >
+      {children}
+    </a>
+  );
+}
 
 export function Footer() {
   return (
-    <footer className="bg-footer text-white">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-8 gap-8 lg:gap-10">
-          <div className="md:col-span-3 lg:col-span-2 flex flex-col gap-4">
-            <span className="font-extrabold text-2xl text-primary">venuze</span>
-            <p className="text-faint text-sm max-w-xs">
-              Make it memorable—book the perfect venue and the pros who make it shine.
-            </p>
+    <footer className="bg-black rounded-t-[30px] md:rounded-t-[50px] pt-[100px] md:pt-[133px] pb-10">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-[84px]">
+        <div className="flex flex-col xl:flex-row xl:justify-between gap-12">
+          <div className="w-full xl:max-w-[536px]">
+            <div className="flex flex-col sm:flex-row items-start gap-4">
+              <Image
+                src="/images/logo-mark.png"
+                alt="Venuze"
+                width={67}
+                height={45}
+                className="h-[45px] w-auto shrink-0"
+              />
+              <p className="text-white text-[20px] leading-[34px] md:text-[24px] md:leading-[45px] font-semibold max-w-[565px] sm:-mt-2">
+                Make it memorable—book the perfect venue and the pros who make it shine.
+              </p>
+            </div>
+
+            <div className="mt-[33px] grid grid-cols-2 gap-y-10 md:grid-cols-[166px_182px_165px_auto] md:gap-y-0">
+              {LINK_COLUMNS.map((col) => (
+                <div key={col.heading} className={col.order}>
+                  <h3 className="text-[20px] leading-[24px] text-[#a6a6a6] font-normal">
+                    {col.heading}
+                  </h3>
+                  <ul className="mt-[10px]">
+                    {col.links.map((link) => (
+                      <li key={link}>
+                        <a
+                          href="#"
+                          className="block text-[12px] leading-[21px] text-white hover:text-white/70 transition-colors whitespace-nowrap"
+                        >
+                          {link}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {LINK_COLUMNS.map((col) => (
-            <div key={col.heading}>
-              <h3 className="text-white font-semibold text-sm mb-4">{col.heading}</h3>
-              <ul>
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-faint text-sm hover:text-white transition-colors block py-1.5"
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+          <div className="w-full xl:w-[516px] xl:shrink-0">
+            <h3 className="text-white text-[24px] leading-[30px] font-semibold">Get in Touch</h3>
+            <div className="mt-[17px]">
+              <ContactForm />
             </div>
-          ))}
-
-          <div className="md:col-span-2 lg:col-span-2">
-            <h3 className="text-white font-semibold text-sm mb-4">Get in Touch</h3>
-            <ContactForm />
           </div>
         </div>
 
-        <div className="border-t border-white/10 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-faint text-sm">© 2026 Venuze. All rights reserved.</p>
-          <div className="flex items-center gap-3">
-            <a
-              href="#"
-              aria-label="Venuze on X"
-              className="h-9 w-9 rounded-full border border-white/15 text-faint hover:text-white hover:border-white/40 inline-flex items-center justify-center transition-colors"
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.736-8.866L2.154 2.25H8.08l4.261 5.632L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
+        <div className="border-t border-[#373737] mt-[43px] pt-[35px] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-[32px]">
+            <SocialIcon label="Venuze on X">
+              <svg width="26" height="26" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M11.9 8.6 18.4 1h-1.5l-5.7 6.6L6.7 1H1.4l6.8 9.9L1.4 19h1.5l6-6.9 4.8 6.9h5.3l-7.1-10.4Zm-2.1 2.4-.7-1L3.5 2.2h2.4l4.4 6.4.7 1 5.8 8.3h-2.4l-4.6-6.9Z" />
               </svg>
-            </a>
-            <a
-              href="#"
-              aria-label="Venuze on Facebook"
-              className="h-9 w-9 rounded-full border border-white/15 text-faint hover:text-white hover:border-white/40 inline-flex items-center justify-center transition-colors"
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </SocialIcon>
+            <SocialIcon label="Venuze on Facebook">
+              <svg width="26" height="26" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M18 10a8 8 0 1 0-9.25 7.9v-5.59H6.72V10h2.03V8.24c0-2 1.2-3.11 3.02-3.11.88 0 1.8.16 1.8.16v1.97h-1.02c-1 0-1.3.62-1.3 1.25V10h2.22l-.36 2.31h-1.86v5.59A8 8 0 0 0 18 10Z" />
               </svg>
-            </a>
-            <a
-              href="#"
-              aria-label="Venuze on Instagram"
-              className="h-9 w-9 rounded-full border border-white/15 text-faint hover:text-white hover:border-white/40 inline-flex items-center justify-center transition-colors"
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </SocialIcon>
+            <SocialIcon label="Venuze on Instagram">
+              <svg width="26" height="26" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+                <rect x="2" y="2" width="16" height="16" rx="4.5" />
+                <circle cx="10" cy="10" r="3.8" />
+                <circle cx="14.8" cy="5.2" r="0.9" fill="currentColor" stroke="none" />
               </svg>
-            </a>
+            </SocialIcon>
           </div>
+          <p className="text-[14px] leading-[30px] text-[#9a9a9a]">
+            © 2026 Venuze. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

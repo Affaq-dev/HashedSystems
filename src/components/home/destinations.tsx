@@ -41,32 +41,41 @@ export function Destinations() {
           subtitle="From cosmopolitan cityscapes to cultural treasures, explore where celebrations come alive with local flavor."
         />
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="mt-12 -mx-4 flex snap-x snap-mandatory gap-[15px] overflow-x-auto scroll-px-4 px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:-mx-6 md:scroll-px-6 md:px-6 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible lg:px-0">
           {DESTINATIONS.map((dest) => (
             <div
               key={dest.name}
-              className="relative rounded-card overflow-hidden aspect-[4/5] group cursor-pointer"
+              className="relative w-[300px] shrink-0 snap-center rounded-card overflow-hidden aspect-[4/5] group cursor-pointer lg:w-auto"
             >
               <Image
                 src={dest.image}
                 alt={dest.alt}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-300 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-                sizes="(max-width: 768px) 100vw, 33vw"
+                sizes="(max-width: 1023px) 300px, 33vw"
               />
 
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
               <div className="absolute top-4 left-4">
-                <Badge variant="dark">{dest.count}</Badge>
+                <Badge
+                  variant="dark"
+                  className="px-[11px] py-[6px] font-semibold text-[11px] lg:px-[15px] lg:py-[8px] lg:text-[12px]"
+                >
+                  {dest.count}
+                </Badge>
               </div>
 
-              <div className="absolute bottom-0 left-0 right-0 p-5">
-                <p className="text-white text-2xl font-bold leading-tight">{dest.name}</p>
-                <p className="text-white/80 text-sm mt-1">{dest.description}</p>
-                <div className="flex items-center justify-between mt-2">
-                  <p className="text-white/80 text-sm">{dest.popular}</p>
-                  <p className="text-white font-bold text-sm">{dest.price}</p>
+              <div className="absolute bottom-0 left-0 right-0 p-[14px] lg:p-5">
+                <p className="text-white text-[22px] font-semibold leading-[24px] lg:text-[30px] lg:leading-[30px]">
+                  {dest.name}
+                </p>
+                <p className="text-white text-[13px] leading-[18px] mt-[6px] lg:text-[16px] lg:leading-[24px] lg:mt-[10px]">
+                  {dest.description}
+                </p>
+                <div className="flex items-center justify-between gap-2 mt-[4px] lg:mt-[5px]">
+                  <p className="text-white text-[13px] whitespace-nowrap lg:text-[16px]">{dest.popular}</p>
+                  <p className="text-white font-bold text-[13px] whitespace-nowrap lg:text-[16px]">{dest.price}</p>
                 </div>
               </div>
             </div>

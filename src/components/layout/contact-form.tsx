@@ -3,10 +3,8 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import { useUiStore } from "@/stores/ui-store";
+import { cn } from "@/lib/cn";
 
 const schema = z.object({
   email: z.email("Enter a valid email address"),
@@ -14,6 +12,9 @@ const schema = z.object({
 });
 
 type FormValues = z.infer<typeof schema>;
+
+const fieldClasses =
+  "w-full bg-[#1d1d1d] border border-[#4a4a4a] px-[20px] text-[16px] text-white placeholder:text-white focus:outline-none focus:border-white/60 transition-colors";
 
 export function ContactForm() {
   const pushToast = useUiStore((s) => s.pushToast);
@@ -33,23 +34,19 @@ export function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
+    <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <div>
-        <label
-          htmlFor="contact-email"
-          className="block text-sm font-medium text-white/80 mb-1"
-        >
+        <label htmlFor="contact-email" className="sr-only">
           Email address
         </label>
-        <Input
+        <input
           id="contact-email"
           {...register("email")}
           type="email"
           placeholder="Email Address"
-          invalid={!!errors.email}
           aria-invalid={!!errors.email}
           aria-describedby={errors.email ? "contact-email-error" : undefined}
-          className="bg-white/5 border-white/15 text-white placeholder:text-faint"
+          className={cn(fieldClasses, "h-[44px] rounded-[12px]", !!errors.email && "border-primary")}
         />
         {errors.email && (
           <p id="contact-email-error" className="text-xs text-primary mt-1">
@@ -57,21 +54,21 @@ export function ContactForm() {
           </p>
         )}
       </div>
-      <div>
-        <label
-          htmlFor="contact-message"
-          className="block text-sm font-medium text-white/80 mb-1"
-        >
+      <div className="mt-[17px]">
+        <label htmlFor="contact-message" className="sr-only">
           Message
         </label>
-        <Textarea
+        <textarea
           id="contact-message"
           {...register("message")}
           placeholder="Message"
-          invalid={!!errors.message}
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? "contact-message-error" : undefined}
-          className="bg-white/5 border-white/15 text-white placeholder:text-faint"
+          className={cn(
+            fieldClasses,
+            "h-[148px] rounded-[10px] py-[15px] resize-none",
+            !!errors.message && "border-primary"
+          )}
         />
         {errors.message && (
           <p id="contact-message-error" className="text-xs text-primary mt-1">
@@ -79,10 +76,14 @@ export function ContactForm() {
           </p>
         )}
       </div>
-      <div className="flex justify-end">
-        <Button type="submit" size="md" disabled={isSubmitting}>
+      <div className="mt-[17px] flex justify-end">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="inline-flex items-center justify-center h-[50px] px-[37px] rounded-[10px] bg-primary text-white text-[20px] font-semibold tracking-[-0.6px] hover:bg-primary-hover transition-colors disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+        >
           {isSubmitting ? "Sending..." : "Send"}
-        </Button>
+        </button>
       </div>
     </form>
   );

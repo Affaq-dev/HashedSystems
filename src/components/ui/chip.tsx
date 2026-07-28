@@ -10,10 +10,10 @@ type ChipProps = {
 
 export function Chip({ children, onRemove, active = false, onClick, className }: ChipProps) {
   const baseClasses = cn(
-    "inline-flex items-center gap-2 rounded-full border px-4 h-9 text-sm transition-colors",
+    "inline-flex items-center gap-1 rounded-full border-[1.5px] px-[15px] h-8 text-[11px] font-medium transition-colors",
     active
       ? "border-primary text-primary bg-primary/5"
-      : "border-border text-foreground bg-surface",
+      : "border-[#e6e6e6] text-[#3a3a3a] bg-white",
     className
   );
 

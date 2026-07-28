@@ -16,7 +16,9 @@ function filterVenues(tab: Tab) {
     v.venueType.toLowerCase().includes(lower) ||
     v.venueType.toLowerCase() === lower
   );
-  return matched.length > 0 ? matched.slice(0, 8) : venues.slice(0, 8);
+  if (matched.length >= 4) return matched.slice(0, 8);
+  const rest = venues.filter((v) => !matched.includes(v));
+  return [...matched, ...rest].slice(0, 8);
 }
 
 export function FeaturedVenues() {
@@ -44,43 +46,45 @@ export function FeaturedVenues() {
       <div className="absolute inset-0 bg-black/55" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-white text-center text-balance">
+        <h2 className="text-[28px] md:text-[44px] font-semibold text-white text-center text-balance leading-[50px]">
           Featured Venues
         </h2>
 
-        <div className="mt-8 flex gap-3 justify-center flex-wrap">
-          {TABS.map((tab) => (
-            <button
-              key={tab}
-              type="button"
-              onClick={() => setActiveTab(tab)}
-              className={cn(
-                "px-5 h-11 rounded-lg text-sm font-semibold uppercase shrink-0 transition-colors",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
-                activeTab === tab
-                  ? "bg-primary text-white"
-                  : "bg-white/15 text-white/85 hover:bg-white/25"
-              )}
-            >
-              {tab}
-            </button>
-          ))}
+        <div className="mt-[25px] -mx-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:-mx-6 md:px-6">
+          <div className="mx-auto flex w-max gap-3">
+            {TABS.map((tab) => (
+              <button
+                key={tab}
+                type="button"
+                onClick={() => setActiveTab(tab)}
+                className={cn(
+                  "h-[50px] px-[30px] rounded-[10px] text-[16px] shrink-0 transition-colors",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
+                  activeTab === tab
+                    ? "bg-primary text-white font-bold"
+                    : "bg-[#b7b7b7]/50 text-white font-normal hover:bg-white/25"
+                )}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="mt-8">
           <div
             ref={scrollRef}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="-mx-4 flex items-stretch gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth scroll-px-4 px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:-mx-6 md:gap-[28px] md:scroll-px-6 md:px-6 lg:gap-6"
           >
             {displayed.map((venue) => (
-              <div key={venue.id} className="min-w-[300px] md:min-w-[340px] snap-start">
+              <div key={venue.id} className="w-[300px] shrink-0 snap-start lg:w-[340px]">
                 <VenueCard venue={venue} />
               </div>
             ))}
           </div>
         </div>
 
-        <div className="flex justify-end gap-2 mt-6">
+        <div className="hidden lg:flex justify-end gap-2 mt-6">
           <button
             type="button"
             aria-label="Scroll venues left"

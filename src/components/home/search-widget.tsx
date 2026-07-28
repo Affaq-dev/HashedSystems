@@ -3,13 +3,22 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/cn";
-import { Button } from "@/components/ui/button";
 
 type FieldKey = "where" | "when" | "guests";
 
 const WHERE_OPTIONS = ["Dubai, UAE", "London, UK", "New York, USA"];
 const WHEN_OPTIONS = ["Anytime", "Today", "This week", "This month"];
 const GUESTS_OPTIONS = ["10-20", "1-10", "20-50", "50-100", "100+"];
+
+function VenueIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <rect x="3" y="7" width="14" height="11" rx="1" stroke="currentColor" strokeWidth="1.75" />
+      <path d="M1 7L10 1L19 7" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+      <rect x="8" y="12" width="4" height="6" rx="0.5" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
+  );
+}
 
 function SparkleIcon() {
   return (
@@ -98,8 +107,8 @@ function DropdownField({
         )}
       >
         <span className="flex flex-col min-w-0">
-          <span className="text-xs text-muted leading-none mb-0.5">{label}</span>
-          <span className="text-sm font-semibold text-foreground truncate">{value}</span>
+          <span className="text-[14px] leading-[21px] font-normal text-[#808080]">{label}</span>
+          <span className="text-[16px] leading-[24px] font-medium text-black truncate">{value}</span>
         </span>
         <span className="text-muted shrink-0">
           <ChevronDownIcon />
@@ -176,38 +185,41 @@ export function SearchWidget() {
 
   return (
     <div ref={rootRef}>
-      <div className="flex gap-2 mb-3 justify-center md:justify-start">
-        <button
-          type="button"
-          onClick={() => setActiveTab("venue")}
-          className={cn(
-            "rounded-full h-10 px-6 text-sm font-semibold shadow-card transition-colors",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
-            activeTab === "venue"
-              ? "bg-primary text-white"
-              : "bg-white text-foreground hover:bg-foreground/5"
-          )}
-        >
-          Venue
-        </button>
-        <button
-          type="button"
-          onClick={() => setActiveTab("vendors")}
-          className={cn(
-            "rounded-full h-10 px-6 text-sm font-semibold shadow-card transition-colors inline-flex items-center gap-1.5",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
-            activeTab === "vendors"
-              ? "bg-primary text-white"
-              : "bg-white text-foreground hover:bg-foreground/5"
-          )}
-        >
-          <SparkleIcon />
-          Vendors
-        </button>
+      <div className="relative z-10 -mb-[17px] hidden justify-center lg:flex">
+        <div className="inline-flex items-center bg-white rounded-[10px] shadow-card px-[7px] py-[7px] gap-0">
+          <button
+            type="button"
+            onClick={() => setActiveTab("venue")}
+            className={cn(
+              "inline-flex items-center gap-[7px] rounded-[10px] px-5 text-[14px] leading-[21px] font-semibold transition-colors",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
+              activeTab === "venue"
+                ? "h-[40px] bg-primary text-white"
+                : "h-[24px] text-foreground hover:text-primary"
+            )}
+          >
+            <VenueIcon />
+            Venue
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab("vendors")}
+            className={cn(
+              "inline-flex items-center gap-[5px] rounded-[10px] px-5 text-[14px] leading-[21px] font-semibold transition-colors",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
+              activeTab === "vendors"
+                ? "h-[40px] bg-primary text-white"
+                : "h-[24px] text-black hover:text-primary"
+            )}
+          >
+            <SparkleIcon />
+            Vendors
+          </button>
+        </div>
       </div>
 
-      <div className="bg-white rounded-card shadow-float p-2 md:p-2.5">
-        <div className="hidden md:flex items-stretch">
+      <div className="bg-white rounded-[10px] shadow-float p-4 md:px-[16px] md:py-[16px]">
+        <div className="hidden md:flex items-center gap-[24px]">
           <DropdownField
             id="where"
             label="Where"
@@ -220,7 +232,6 @@ export function SearchWidget() {
               setOpenField(null);
             }}
           />
-          <div className="border-l border-border self-stretch my-1" />
           <DropdownField
             id="when"
             label="When"
@@ -233,7 +244,6 @@ export function SearchWidget() {
               setOpenField(null);
             }}
           />
-          <div className="border-l border-border self-stretch my-1" />
           <DropdownField
             id="guests"
             label="Guests"
@@ -247,20 +257,47 @@ export function SearchWidget() {
             }}
           />
           <div className="ml-2 shrink-0">
-            <Button
-              variant="primary"
-              size="lg"
+            <button
+              type="button"
               onClick={handleSearch}
               aria-label="Search venues"
-              className="h-full"
+              className="rounded-[10px] h-full min-h-[61px] px-[40px] text-[24px] leading-[29px] font-semibold text-white bg-primary hover:bg-primary-hover inline-flex items-center gap-[10px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
             >
               <MagnifierIcon />
               Search
-            </Button>
+            </button>
           </div>
         </div>
 
-        <div className="flex md:hidden flex-col divide-y divide-border">
+        <div className="flex md:hidden flex-col">
+          <div className="flex gap-[11px]">
+            <button
+              type="button"
+              onClick={() => setActiveTab("venue")}
+              className={cn(
+                "flex h-[44px] flex-1 items-center justify-center gap-[7px] rounded-[10px] text-[16px] font-semibold transition-colors",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
+                activeTab === "venue" ? "bg-primary text-white" : "bg-[#edeef1] text-[#5e5e5e]"
+              )}
+            >
+              <VenueIcon />
+              Venue
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab("vendors")}
+              className={cn(
+                "flex h-[44px] flex-1 items-center justify-center gap-[7px] rounded-[10px] text-[16px] font-semibold transition-colors",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
+                activeTab === "vendors" ? "bg-primary text-white" : "bg-[#edeef1] text-[#5e5e5e]"
+              )}
+            >
+              <SparkleIcon />
+              Vendors
+            </button>
+          </div>
+
+          <div className="mt-[6px] flex flex-col divide-y divide-border">
           <DropdownField
             id="where"
             label="Where"
@@ -297,18 +334,17 @@ export function SearchWidget() {
               setOpenField(null);
             }}
           />
-          <div className="pt-2">
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={handleSearch}
-              aria-label="Search venues"
-              className="w-full"
-            >
-              <MagnifierIcon />
-              Search
-            </Button>
           </div>
+
+          <button
+            type="button"
+            onClick={handleSearch}
+            aria-label="Search venues"
+            className="mt-[14px] w-full rounded-[10px] h-[50px] px-6 text-[18px] leading-[24px] font-semibold text-white bg-primary hover:bg-primary-hover inline-flex items-center justify-center gap-[10px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+          >
+            <MagnifierIcon />
+            Search
+          </button>
         </div>
       </div>
     </div>

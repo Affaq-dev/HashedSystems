@@ -68,15 +68,14 @@ export function ActiveFilters({ total }: ActiveFiltersProps) {
     (params.venueTypes && params.venueTypes.length > 0) ||
     (params.eventTypes && params.eventTypes.length > 0);
 
+
   return (
-    <div className="max-w-[1600px] mx-auto px-4 md:px-6 py-4 flex flex-wrap items-center gap-2">
-      <span className="text-sm text-foreground">
+    <div className="max-w-[1600px] mx-auto px-4 md:px-6 py-[10px] flex flex-wrap items-center gap-[5px]">
+      <span className="text-[14px] text-[#575757] font-normal shrink-0 mr-1">
         {total === undefined ? (
           <Skeleton className="h-5 w-40 inline-block" />
         ) : (
-          <>
-            <strong>{total.toLocaleString()}</strong> {categoryLabel} near London
-          </>
+          `${total.toLocaleString()} ${categoryLabel} near London`
         )}
       </span>
 
@@ -91,6 +90,7 @@ export function ActiveFilters({ total }: ActiveFiltersProps) {
       {(params.priceMin !== undefined || params.priceMax !== undefined) && (
         <Chip
           onRemove={() => setParams({ priceMin: undefined, priceMax: undefined })}
+         
         >
           {params.priceMin !== undefined && params.priceMax !== undefined
             ? `AED ${params.priceMin}–${params.priceMax}`
@@ -103,6 +103,7 @@ export function ActiveFilters({ total }: ActiveFiltersProps) {
       {(params.guestsMin !== undefined || params.guestsMax !== undefined) && (
         <Chip
           onRemove={() => setParams({ guestsMin: undefined, guestsMax: undefined })}
+         
         >
           {params.guestsMin !== undefined && params.guestsMax !== undefined
             ? `${params.guestsMin}–${params.guestsMax} guests`
@@ -120,6 +121,7 @@ export function ActiveFilters({ total }: ActiveFiltersProps) {
               venueTypes: params.venueTypes?.filter((v) => v !== vt),
             })
           }
+         
         >
           {vt}
         </Chip>
@@ -133,6 +135,7 @@ export function ActiveFilters({ total }: ActiveFiltersProps) {
               eventTypes: params.eventTypes?.filter((e) => e !== et),
             })
           }
+         
         >
           {et}
         </Chip>
@@ -142,9 +145,9 @@ export function ActiveFilters({ total }: ActiveFiltersProps) {
         <button
           type="button"
           onClick={clearAll}
-          className="text-sm text-primary font-medium hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded"
+          className="inline-flex items-center h-8 px-[15px] rounded-full border-[1.5px] border-[#e6e6e6] bg-white text-[11px] text-[#3a3a3a] font-medium transition-colors hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
         >
-          Clear all
+          Clear filters
         </button>
       )}
 
@@ -154,21 +157,21 @@ export function ActiveFilters({ total }: ActiveFiltersProps) {
           onClick={() => setSortOpen((v) => !v)}
           aria-haspopup="listbox"
           aria-expanded={sortOpen}
-          className="inline-flex items-center gap-1.5 text-sm font-medium hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded"
+          className="inline-flex items-center gap-2 h-8 px-[15px] rounded-full border-[1.5px] border-[#e6e6e6] bg-white text-[11px] text-[#333333] font-normal transition-colors hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
         >
           Sort by: {sortLabel}
           <svg
-            width="14"
-            height="14"
-            viewBox="0 0 14 14"
+            width="10"
+            height="10"
+            viewBox="0 0 10 10"
             fill="none"
             aria-hidden="true"
             className={cn("transition-transform duration-150", sortOpen && "rotate-180")}
           >
             <path
-              d="M3 5l4 4 4-4"
+              d="M2 3.5l3 3 3-3"
               stroke="currentColor"
-              strokeWidth="1.5"
+              strokeWidth="1"
               strokeLinecap="round"
               strokeLinejoin="round"
             />

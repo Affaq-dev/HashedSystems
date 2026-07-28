@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #ef4444;
-  --color-primary-hover: #dc2626;
-  --color-accent: #f97316;
-  --color-dot-active: #f59e0b;
+  --color-primary: #ff5037;
+  --color-primary-hover: #ca3a24;
+  --color-accent: #ffb27d;
+  --color-dot-active: #fec432;
 
   --color-surface: #ffffff;
-  --color-surface-alt: #fff5f2;
+  --color-surface-alt: #fff5de;
   --color-ink: #0f0f0f;
   --color-footer: #0a0a0a;
 
-  --color-foreground: #111827;
-  --color-muted: #6b7280;
-  --color-faint: #9ca3af;
+  --color-foreground: #000000;
+  --color-muted: #616161;
+  --color-faint: #828282;
 
-  --color-border: #e5e7eb;
+  --color-border: #e4e4e4;
 
-  --radius-card: 0.875rem;
+  --radius-card: 0.6875rem;
   --radius-field: 0.625rem;
 
-  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
 
   --shadow-card: 0 1px 3px rgb(0 0 0 / 0.08), 0 4px 14px rgb(0 0 0 / 0.06);
   --shadow-float: 0 8px 30px rgb(0 0 0 / 0.18);
@@ -30,4 +30,17 @@ body {
   background: var(--color-surface);
   color: var(--color-foreground);
   font-family: var(--font-sans);
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  select,
+  summary {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
 }

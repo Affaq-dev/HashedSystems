@@ -25,7 +25,7 @@ export default function LoginPage() {
         <div className="flex justify-center">
           <Logo withWordmark />
         </div>
-        <h1 className="text-2xl font-extrabold text-center mt-4 text-foreground">
+        <h1 className="text-2xl font-semibold text-center mt-4 text-foreground">
           Welcome back
         </h1>
         <p className="text-muted text-sm text-center mt-1">

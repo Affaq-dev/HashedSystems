@@ -7,19 +7,19 @@ type MapPopupCardProps = {
 
 export function MapPopupCard({ venue }: MapPopupCardProps) {
   return (
-    <div className="w-56">
-      <div className="relative w-full" style={{ height: 130 }}>
+    <div className="w-[240px]">
+      <div className="relative w-full" style={{ height: 155 }}>
         <Image
           src={venue.images[0]}
           alt={venue.title}
           fill
           className="object-cover"
-          sizes="224px"
+          sizes="240px"
         />
       </div>
       <div className="p-3">
-        <p className="text-sm font-bold line-clamp-1 text-foreground">{venue.title}</p>
-        <p className="text-xs text-muted mt-0.5">
+        <p className="text-sm font-semibold line-clamp-1 text-foreground">{venue.title}</p>
+        <p className="text-xs text-muted mt-1">
           {venue.city}, {venue.country}
         </p>
       </div>

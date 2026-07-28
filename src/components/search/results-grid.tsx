@@ -86,15 +86,17 @@ export function ResultsGrid() {
             )}
           </div>
 
-          <aside className="hidden xl:block xl:w-[38%] shrink-0">
-            <div className="rounded-card border border-border h-[70vh] sticky top-[104px] overflow-hidden">
-              <VenueMap
-                venues={allItems}
-                selectedId={selectedId}
-                onSelect={setSelectedId}
-              />
-            </div>
-          </aside>
+          {total !== 0 && (
+            <aside className="hidden xl:block xl:w-[30%] shrink-0">
+              <div className="rounded-card border border-border h-[70vh] sticky top-[104px] overflow-hidden">
+                <VenueMap
+                  venues={allItems}
+                  selectedId={selectedId}
+                  onSelect={setSelectedId}
+                />
+              </div>
+            </aside>
+          )}
         </div>
       </div>
 
