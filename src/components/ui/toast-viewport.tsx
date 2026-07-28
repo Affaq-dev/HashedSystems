@@ -73,7 +73,7 @@ function ToastItem({
       className={cn(
         "bg-ink text-white rounded-card shadow-float px-4 py-3 text-sm flex items-start gap-3",
         "transition-[opacity,transform] duration-200 motion-reduce:transition-none motion-reduce:transform-none",
-        show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+        show ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-3"
       )}
     >
       {toast.type === "success" ? <CheckCircle /> : <AlertCircle />}
@@ -109,7 +109,7 @@ export function ToastViewport() {
     <div
       aria-live="polite"
       aria-atomic="false"
-      className="fixed bottom-6 right-6 z-[60] flex flex-col gap-2 w-80 max-w-[calc(100vw-2rem)]"
+      className="fixed top-[80px] md:top-[96px] right-6 z-[60] flex flex-col gap-2 w-80 max-w-[calc(100vw-2rem)]"
     >
       {toasts.map((toast) => (
         <ToastItem

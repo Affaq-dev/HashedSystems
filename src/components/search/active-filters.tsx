@@ -9,6 +9,8 @@ import type { VenueCategory } from "@/types/venue";
 
 type ActiveFiltersProps = {
   total?: number;
+  mapOpen?: boolean;
+  onToggleMap?: () => void;
 };
 
 const categoryPluralMap: Record<VenueCategory | "all", string> = {
@@ -31,7 +33,7 @@ const sortLabels: Record<string, string> = {
   "price-desc": "Price: high to low",
 };
 
-export function ActiveFilters({ total }: ActiveFiltersProps) {
+export function ActiveFilters({ total, mapOpen, onToggleMap }: ActiveFiltersProps) {
   const { params, setParams, clearAll } = useSearchParamsState();
   const [sortOpen, setSortOpen] = useState(false);
   const sortRef = useRef<HTMLDivElement>(null);
@@ -151,7 +153,33 @@ export function ActiveFilters({ total }: ActiveFiltersProps) {
         </button>
       )}
 
-      <div ref={sortRef} className="relative ml-auto">
+      {onToggleMap && total !== 0 && (
+        <button
+          type="button"
+          onClick={onToggleMap}
+          className="ml-auto xl:hidden inline-flex items-center gap-[8px] h-[38px] px-[16px] rounded-[10px] border border-[#e6e6e6] bg-white text-[13px] font-medium text-foreground transition-colors hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 cursor-pointer"
+        >
+          {mapOpen ? (
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <rect x="1.5" y="2.5" width="5" height="11" rx="1.5" stroke="currentColor" strokeWidth="1.4" />
+              <rect x="9.5" y="2.5" width="5" height="11" rx="1.5" stroke="currentColor" strokeWidth="1.4" fill="currentColor" />
+            </svg>
+          ) : (
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path
+                d="M8 1.5A4.5 4.5 0 0 1 12.5 6c0 3.5-4.5 8.5-4.5 8.5S3.5 9.5 3.5 6A4.5 4.5 0 0 1 8 1.5Z"
+                stroke="currentColor"
+                strokeWidth="1.4"
+                strokeLinejoin="round"
+              />
+              <circle cx="8" cy="6" r="1.5" stroke="currentColor" strokeWidth="1.2" />
+            </svg>
+          )}
+          {mapOpen ? "Show List" : "Show Map"}
+        </button>
+      )}
+
+      <div ref={sortRef} className="relative ml-auto hidden xl:block">
         <button
           type="button"
           onClick={() => setSortOpen((v) => !v)}

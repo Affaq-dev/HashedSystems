@@ -2,7 +2,9 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/stores/auth-store";
+import { useUiStore } from "@/stores/ui-store";
 import { cn } from "@/lib/cn";
 
 type UserMenuProps = {
@@ -10,8 +12,10 @@ type UserMenuProps = {
 };
 
 export function UserMenu({ tone }: UserMenuProps) {
+  const router = useRouter();
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
+  const pushToast = useUiStore((s) => s.pushToast);
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -73,6 +77,8 @@ export function UserMenu({ tone }: UserMenuProps) {
             onClick={() => {
               logout();
               setOpen(false);
+              pushToast("success", "You have been logged out.");
+              router.replace("/login");
             }}
             className="text-sm px-4 py-2 hover:bg-foreground/5 w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-sm"
           >

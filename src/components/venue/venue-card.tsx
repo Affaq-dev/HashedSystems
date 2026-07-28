@@ -10,9 +10,10 @@ import type { Venue } from "@/types/venue";
 type VenueCardProps = {
   venue: Venue;
   highlighted?: boolean;
+  onViewDetails?: (id: string) => void;
 };
 
-export function VenueCard({ venue, highlighted = false }: VenueCardProps) {
+export function VenueCard({ venue, highlighted = false, onViewDetails }: VenueCardProps) {
   const [imageIndex, setImageIndex] = useState(0);
   const [liked, setLiked] = useState(false);
 
@@ -26,7 +27,7 @@ export function VenueCard({ venue, highlighted = false }: VenueCardProps) {
       className={cn(
         "group flex h-full flex-col bg-white rounded-card overflow-hidden shadow-card",
         "hover:shadow-float hover:-translate-y-0.5 transition motion-reduce:transform-none",
-        highlighted && "ring-2 ring-sky-500"
+        highlighted && "ring-2 ring-primary shadow-float"
       )}
     >
       <div className="relative aspect-[6/5] shrink-0">
@@ -44,8 +45,8 @@ export function VenueCard({ venue, highlighted = false }: VenueCardProps) {
           onClick={prevImage}
           className={cn(
             "absolute left-2 top-1/2 -translate-y-1/2 z-10",
-            "h-8 w-8 rounded-full bg-white/90 shadow-card",
-            "inline-flex items-center justify-center transition-colors hover:bg-white",
+            "h-8 w-8 rounded-full bg-black/45 text-white backdrop-blur-[2px]",
+            "inline-flex items-center justify-center transition-colors hover:bg-black/60",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
             "opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity"
           )}
@@ -61,8 +62,8 @@ export function VenueCard({ venue, highlighted = false }: VenueCardProps) {
           onClick={nextImage}
           className={cn(
             "absolute right-2 top-1/2 -translate-y-1/2 z-10",
-            "h-8 w-8 rounded-full bg-white/90 shadow-card",
-            "inline-flex items-center justify-center transition-colors hover:bg-white",
+            "h-8 w-8 rounded-full bg-black/45 text-white backdrop-blur-[2px]",
+            "inline-flex items-center justify-center transition-colors hover:bg-black/60",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
             "opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity"
           )}
@@ -83,33 +84,34 @@ export function VenueCard({ venue, highlighted = false }: VenueCardProps) {
           </div>
         )}
 
-        <div className="absolute top-3 right-3 z-10 flex gap-1.5">
+        <div className="absolute top-3 right-3 z-10 flex gap-2">
           <IconButton
             size="sm"
-            variant="solid"
+            variant="ghost"
             aria-label="Share this venue"
+            className="bg-black/45 text-white backdrop-blur-[2px] hover:bg-black/60"
           >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <circle cx="11" cy="2.5" r="1.5" stroke="currentColor" strokeWidth="1.25" />
-              <circle cx="11" cy="11.5" r="1.5" stroke="currentColor" strokeWidth="1.25" />
-              <circle cx="3" cy="7" r="1.5" stroke="currentColor" strokeWidth="1.25" />
-              <path d="M4.4 6.2L9.6 3.3M4.4 7.8l5.2 2.9" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 10.25V2.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+              <path d="M5.4 5.1L8 2.5l2.6 2.6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M3.5 8.5v3.35c0 .64.52 1.15 1.15 1.15h6.7c.63 0 1.15-.51 1.15-1.15V8.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </IconButton>
           <IconButton
             size="sm"
-            variant="solid"
+            variant="ghost"
             aria-label={liked ? "Remove from favourites" : "Save to favourites"}
             onClick={() => setLiked((v) => !v)}
+            className="bg-black/45 text-white backdrop-blur-[2px] hover:bg-black/60"
           >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path
-                d="M7 12S1.5 8.5 1.5 4.5A3 3 0 0 1 7 3a3 3 0 0 1 5.5 1.5C12.5 8.5 7 12 7 12Z"
-                stroke={liked ? "#ef4444" : "currentColor"}
-                strokeWidth="1.25"
+                d="M8 13.3S2.6 10 2.6 6.2A3 3 0 0 1 8 4.4a3 3 0 0 1 5.4 1.8c0 3.8-5.4 7.1-5.4 7.1Z"
+                stroke={liked ? "#ff5037" : "currentColor"}
+                strokeWidth="1.4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                fill={liked ? "#ef4444" : "none"}
+                fill={liked ? "#ff5037" : "none"}
               />
             </svg>
           </IconButton>
@@ -183,7 +185,15 @@ export function VenueCard({ venue, highlighted = false }: VenueCardProps) {
           </span>
           <button
             type="button"
-            className="h-[32px] px-[15px] rounded-[10px] bg-white border border-primary text-[11px] font-medium text-primary inline-flex items-center justify-center transition-colors hover:bg-[#fff5f3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+            aria-pressed={highlighted}
+            onClick={() => onViewDetails?.(venue.id)}
+            className={cn(
+              "h-[32px] px-[15px] rounded-[10px] border border-primary text-[11px] font-medium inline-flex items-center justify-center transition-colors cursor-pointer",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
+              highlighted
+                ? "bg-primary text-white hover:bg-primary-hover"
+                : "bg-white text-primary hover:bg-[#fff5f3]"
+            )}
           >
             View details
           </button>

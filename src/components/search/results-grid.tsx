@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { cn } from "@/lib/cn";
 import { useSearchParamsState } from "@/hooks/use-search-params-state";
@@ -22,6 +22,20 @@ export function ResultsGrid() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [mobileMapOpen, setMobileMapOpen] = useState(false);
 
+  const mapSectionRef = useRef<HTMLDivElement>(null);
+
+  const handleViewDetails = useCallback((id: string) => {
+    setSelectedId((current) => (current === id ? null : id));
+    if (window.matchMedia("(max-width: 1279px)").matches) {
+      setMobileMapOpen(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!mobileMapOpen) return;
+    mapSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [mobileMapOpen]);
+
   const total = query.data?.pages[0]?.total;
   const allItems = useMemo(
     () => query.data?.pages.flatMap((p) => p.items) ?? [],
@@ -30,11 +44,15 @@ export function ResultsGrid() {
 
   return (
     <>
-      <ActiveFilters total={total} />
+      <ActiveFilters
+        total={total}
+        mapOpen={mobileMapOpen}
+        onToggleMap={() => setMobileMapOpen((v) => !v)}
+      />
 
       <div className="max-w-[1600px] mx-auto px-4 md:px-6 pb-10">
         <div className="flex gap-6">
-          <div className="flex-1 min-w-0">
+          <div className={cn("flex-1 min-w-0", mobileMapOpen && "hidden xl:block")}>
             {query.isPending ? (
               <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
                 {Array.from({ length: 6 }).map((_, i) => (
@@ -67,6 +85,7 @@ export function ResultsGrid() {
                       key={venue.id}
                       venue={venue}
                       highlighted={venue.id === selectedId}
+                      onViewDetails={handleViewDetails}
                     />
                   ))}
                 </div>
@@ -97,52 +116,21 @@ export function ResultsGrid() {
               </div>
             </aside>
           )}
+
+          {total !== 0 && mobileMapOpen && (
+            <div ref={mapSectionRef} className="xl:hidden flex-1 min-w-0">
+              <div className="rounded-card border border-border h-[70vh] overflow-hidden">
+                <VenueMap
+                  venues={allItems}
+                  selectedId={selectedId}
+                  onSelect={setSelectedId}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
-      <button
-        type="button"
-        aria-label="Show map"
-        onClick={() => setMobileMapOpen(true)}
-        className="fixed bottom-6 left-1/2 -translate-x-1/2 xl:hidden inline-flex items-center gap-2 bg-ink text-white rounded-full h-11 px-6 shadow-float text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 transition-colors hover:bg-ink/90 motion-reduce:transition-none"
-      >
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path
-            d="M8 1.5A4.5 4.5 0 0 1 12.5 6c0 3.5-4.5 8.5-4.5 8.5S3.5 9.5 3.5 6A4.5 4.5 0 0 1 8 1.5Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-          />
-          <circle cx="8" cy="6" r="1.5" stroke="currentColor" strokeWidth="1.25" />
-        </svg>
-        Show Map
-      </button>
-
-      {mobileMapOpen && (
-        <div className="fixed inset-0 z-50 bg-surface">
-          <VenueMap
-            venues={allItems}
-            selectedId={selectedId}
-            onSelect={setSelectedId}
-          />
-          <button
-            type="button"
-            aria-label="Show list"
-            onClick={() => setMobileMapOpen(false)}
-            className="fixed bottom-6 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 bg-ink text-white rounded-full h-11 px-6 shadow-float text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 transition-colors hover:bg-ink/90 motion-reduce:transition-none"
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path
-                d="M2 4h12M2 8h12M2 12h12"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-            </svg>
-            Show List
-          </button>
-        </div>
-      )}
     </>
   );
 }
