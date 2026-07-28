@@ -4,7 +4,7 @@ A venue-discovery application built from the provided Figma design: a public mar
 authenticated search experience behind middleware-protected routes.
 
 - **Repository:** https://github.com/Affaq-dev/HashedSystems
-- **Live deployment:** _add Vercel URL here_
+- **Live deployment:** https://hashed-systems.vercel.app/
 
 ---
 
