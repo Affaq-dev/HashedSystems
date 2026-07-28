@@ -64,25 +64,28 @@ export function SearchToolbar() {
           type="button"
           onClick={openFilterModal}
           aria-label={`Filters${activeFilterCount > 0 ? `, ${activeFilterCount} active` : ""}`}
-          className="inline-flex items-center gap-[5px] text-base font-normal border border-primary bg-white rounded-[10px] h-[34px] px-5 transition-colors hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 shrink-0"
+          className="inline-flex items-center gap-[10px] text-base font-normal h-[34px] rounded-[6px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 shrink-0"
         >
           <svg
             width="16"
             height="16"
-            viewBox="0 0 16 16"
-            fill="none"
+            viewBox="0 0 24 24"
+            fill="currentColor"
             aria-hidden="true"
           >
-            <path
-              d="M2 4h12M4 8h8M6 12h4"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
+            <rect x="2" y="3.3" width="8.5" height="2" rx="1" />
+            <rect x="13.1" y="3.3" width="8.9" height="2" rx="1" />
+            <rect x="13.1" y="2" width="2.4" height="5.4" rx="1.2" />
+            <rect x="2" y="11" width="7" height="2" rx="1" />
+            <rect x="11.2" y="11" width="10.8" height="2" rx="1" />
+            <rect x="6.6" y="8.9" width="2.4" height="6.2" rx="1.2" />
+            <rect x="2" y="17.9" width="10" height="2" rx="1" />
+            <rect x="14.9" y="17.9" width="7.1" height="2" rx="1" />
+            <rect x="14.9" y="16.6" width="2.4" height="5.4" rx="1.2" />
           </svg>
           Filters
           {activeFilterCount > 0 && (
-            <span className="h-5 w-5 rounded-full bg-primary text-white text-[11px] flex items-center justify-center font-semibold">
+            <span className="h-5 w-5 -translate-y-[7px] rounded-full bg-black text-white text-[11px] flex items-center justify-center font-semibold">
               {activeFilterCount}
             </span>
           )}

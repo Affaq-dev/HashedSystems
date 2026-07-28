@@ -123,7 +123,8 @@ export function FilterModal() {
       open={filterModalOpen}
       onClose={closeFilterModal}
       title="Filters"
-      className="max-w-[654px]"
+      side="right"
+      className="max-w-[530px]"
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <section>
@@ -256,7 +257,7 @@ export function FilterModal() {
           </div>
         </section>
 
-        <div className="mt-10 pt-5 border-t border-border flex items-center justify-between">
+        <div className="sticky bottom-0 -mx-6 mt-10 bg-surface px-6 pt-5 pb-6 border-t border-border flex items-center justify-between">
           <Button
             variant="outline"
             type="button"
