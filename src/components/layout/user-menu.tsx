@@ -2,9 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/stores/auth-store";
-import { useUiStore } from "@/stores/ui-store";
+import { useLogout } from "@/hooks/use-logout";
 import { cn } from "@/lib/cn";
 
 type UserMenuProps = {
@@ -12,10 +11,8 @@ type UserMenuProps = {
 };
 
 export function UserMenu({ tone }: UserMenuProps) {
-  const router = useRouter();
   const user = useAuthStore((s) => s.user);
-  const logout = useAuthStore((s) => s.logout);
-  const pushToast = useUiStore((s) => s.pushToast);
+  const logout = useLogout();
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -75,10 +72,8 @@ export function UserMenu({ tone }: UserMenuProps) {
         <div className="absolute right-0 top-full mt-2 bg-surface rounded-card shadow-float border border-border py-1 min-w-36 z-50">
           <button
             onClick={() => {
-              logout();
               setOpen(false);
-              pushToast("success", "You have been logged out.");
-              router.replace("/login");
+              void logout();
             }}
             className="text-sm px-4 py-2 hover:bg-foreground/5 w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-sm"
           >

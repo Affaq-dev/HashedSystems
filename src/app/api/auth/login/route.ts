@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
 import { z } from "zod";
 import { forwardError, missingKeyResponse, reqresHeaders, reqresUrl } from "@/lib/reqres";
 
@@ -36,6 +37,15 @@ export async function POST(request: Request) {
   if (!body.token) {
     return NextResponse.json({ error: "Login failed" }, { status: 502 });
   }
+
+  const cookieStore = await cookies();
+  cookieStore.set("venuze_token", body.token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: 604800,
+  });
 
   return NextResponse.json({ token: body.token });
 }

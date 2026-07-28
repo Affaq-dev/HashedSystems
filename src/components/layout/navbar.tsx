@@ -62,6 +62,7 @@ export function Navbar({ variant = "solid" }: NavbarProps) {
           {effectiveSolid && isAuthenticated && (
             <Link
               href="/search"
+              prefetch={false}
               className="hidden md:flex items-center rounded-[10px] border border-[#d2d2d2] bg-white h-[44px] gap-0 hover:border-primary/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 pl-[5px] pr-[5px]"
             >
               <span className="text-[14px] leading-[21px] font-medium text-black px-4">Location</span>

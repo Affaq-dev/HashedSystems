@@ -2,20 +2,18 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useUiStore } from "@/stores/ui-store";
 import { useAuthStore } from "@/stores/auth-store";
+import { useLogout } from "@/hooks/use-logout";
 import { Logo } from "./logo";
 import { IconButton } from "@/components/ui/icon-button";
 import { cn } from "@/lib/cn";
 
 export function MobileMenu() {
-  const router = useRouter();
   const mobileMenuOpen = useUiStore((s) => s.mobileMenuOpen);
   const closeMobileMenu = useUiStore((s) => s.closeMobileMenu);
-  const pushToast = useUiStore((s) => s.pushToast);
   const user = useAuthStore((s) => s.user);
-  const logout = useAuthStore((s) => s.logout);
+  const logout = useLogout();
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
   const [translated, setTranslated] = useState(true);
@@ -102,10 +100,8 @@ export function MobileMenu() {
             </div>
             <button
               onClick={() => {
-                logout();
                 closeMobileMenu();
-                pushToast("success", "You have been logged out.");
-                router.replace("/login");
+                void logout();
               }}
               className="py-3 text-base font-medium text-primary hover:text-primary-hover text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
             >

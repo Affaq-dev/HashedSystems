@@ -4,6 +4,8 @@ import Image from "next/image";
 import { Logo } from "@/components/layout/logo";
 import { LoginForm } from "@/components/auth/login-form";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Log in — Venuze",
 };

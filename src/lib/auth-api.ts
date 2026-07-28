@@ -14,6 +14,10 @@ export async function login(payload: LoginPayload): Promise<{ token: string }> {
   });
 }
 
+export async function logout(): Promise<{ ok: boolean }> {
+  return apiFetch<{ ok: boolean }>("/api/auth/logout", { method: "POST" });
+}
+
 export async function fetchAuthUser(id: number): Promise<AuthUser> {
   return apiFetch<AuthUser>(`/api/auth/user?id=${id}`);
 }

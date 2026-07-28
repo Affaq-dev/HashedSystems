@@ -33,6 +33,7 @@ export function useLogin() {
       setAuth(token, user);
       pushToast("success", `Welcome back, ${user.firstName}!`);
       router.replace(safeRedirect(from));
+      router.refresh();
     },
     onError: (err) => {
       const message =
